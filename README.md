@@ -1,6 +1,10 @@
 # Helm Chart for sshpiper
 
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/sshpiper)](https://artifacthub.io/packages/search?repo=sshpiper)
+
+
 <https://github.com/tg123/sshpiper>
+
 
 ## Usage
 
