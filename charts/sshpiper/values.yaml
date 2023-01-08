@@ -6,6 +6,7 @@ replicaCount: 1
 
 sshpiper:
   loglevel: "info"
+  ssh_host_key: "" # This is the private key of the ssh server. It is generated if not set.
 
 image:
   repository: farmer1992/sshpiperd

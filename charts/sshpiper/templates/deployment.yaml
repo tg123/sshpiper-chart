@@ -29,7 +29,7 @@ spec:
         - name: PLUGIN
           value: "kubernetes"
         - name: SSHPIPERD_SERVER_KEY
-          value: "/serverkey/ssh_host_ecdsa_key"
+          value: "/serverkey/ssh_host_key"
         - name: SSHPIPERD_LOG_LEVEL
           value: {{ .Values.sshpiper.loglevel }}
         volumeMounts:
@@ -42,5 +42,5 @@ spec:
           secretName: {{ include "sshpiper.fullname" . }}-server-key
           items:
           - key: server_key
-            path: ssh_host_ecdsa_key            
+            path: ssh_host_key
 
