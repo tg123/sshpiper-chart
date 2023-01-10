@@ -11,6 +11,10 @@ spec:
       {{- include "sshpiper.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "sshpiper.selectorLabels" . | nindent 8 }}
     spec:
@@ -18,11 +22,15 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "sshpiper.fullname" . }}-reader
+      serviceAccountName: {{ include "sshpiper.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
       - name: sshpiper
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
         ports:
           - containerPort: 2222
         env:
@@ -31,11 +39,25 @@ spec:
         - name: SSHPIPERD_SERVER_KEY
           value: "/serverkey/ssh_host_key"
         - name: SSHPIPERD_LOG_LEVEL
-          value: {{ .Values.sshpiper.loglevel }}
+          value: {{ .Values.sshpiper.loglevel | quote }}
+        {{- if .Values.sshpiper.bannertext }}
+        - name: SSHPIPERD_BANNERTEXT
+          value: {{ .Values.sshpiper.bannertext | quote }}
+        {{- end }}
+        {{- if .Values.sshpiper.login_grace_time }}
+        - name: SSHPIPERD_LOGIN_GRACE_TIME
+          value: {{ .Values.sshpiper.login_grace_time | quote }}
+        {{- end }}
+        {{- if .Values.sshpiper.kubernetes_all_namespaces }}
+        - name: SSHPIPERD_KUBERNETES_ALL_NAMESPACES
+          value: "true"
+        {{- end }}
         volumeMounts:
         - name: sshpiper-server-key
           mountPath: "/serverkey/"
-          readOnly: true          
+          readOnly: true
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
       volumes:
       - name: sshpiper-server-key
         secret:
@@ -43,4 +65,15 @@ spec:
           items:
           - key: server_key
             path: ssh_host_key
-
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
