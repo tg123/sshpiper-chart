@@ -3,6 +3,29 @@ entries:
   sshpiper:
   - apiVersion: v2
     appVersion: v1.0.83
+    created: "2023-01-12T11:39:35.753461821Z"
+    description: The missing reverse proxy for ssh scp, username based SSH Reverse
+      Proxy
+    digest: 460b6f407bb7ae21cdb9680ebbf0b120648088ce3e418b52bc69168234814b02
+    keywords:
+    - ssh
+    - scp
+    - reverse proxy
+    - sshpiper
+    maintainers:
+    - email: farmer1992@gmail.com
+      name: Boshi Lian
+      url: https://github.com/tg123
+    name: sshpiper
+    sources:
+    - https://github.com/tg123/sshpiper
+    - https://github.com/tg123/sshpiper-chart
+    type: application
+    urls:
+    - https://github.com/tg123/sshpiper-chart/releases/download/sshpiper-0.2.0/sshpiper-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: v1.0.83
     created: "2023-01-08T12:03:08.585515857Z"
     description: The missing reverse proxy for ssh scp, username based SSH Reverse
       Proxy
@@ -93,4 +116,4 @@ entries:
     urls:
     - https://github.com/tg123/sshpiper-chart/releases/download/sshpiper-0.1.1/sshpiper-0.1.1.tgz
     version: 0.1.1
-generated: "2023-01-08T12:03:08.585534357Z"
+generated: "2023-01-12T11:39:35.753479823Z"
