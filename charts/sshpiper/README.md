@@ -12,6 +12,14 @@ helm repo add sshpiper https://tg123.github.io/sshpiper-chart/
 helm install my-sshpiper sshpiper/sshpiper --version 0.1.1
 ```
 
+### Helm Parameters
+
+| Name                         | Description                                                                                                                             | Default Value |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| sshpiper.ssh_host_key_base64 | The SSH server private key, base64 encoded. If not set a new one will be generated                                                      | ""            |
+| sshpiper.existingSecret      | The secret containing SSH server private key in the `server_key` key. If set the `sshpiper.ssh_host_key_base64` is no more interpreted. | null          |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|---------------|
+
 
 ### Create Password Pipe
 
@@ -54,7 +62,7 @@ metadata:
   name: pipe-publickey
 spec:
   from:
-  - username: ".*" # catch all    
+  - username: ".*" # catch all
     username_regex_match: true
     authorized_keys_data: "base64_authorized_keys_data"
   to:
