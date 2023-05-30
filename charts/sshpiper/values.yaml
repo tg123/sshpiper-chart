@@ -10,6 +10,8 @@ sshpiper:
   login_grace_time: 30s
   bannertext: ""
   kubernetes_all_namespaces: false
+  drop_hostkeys_message: false
+  extraEnvVars: [] # Array of dict. with extra env. variables
 
 image:
   repository: farmer1992/sshpiperd
