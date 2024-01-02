@@ -9,7 +9,7 @@ The missing reverse proxy for ssh scp
 ```
 helm repo add sshpiper https://tg123.github.io/sshpiper-chart/
 
-helm install my-sshpiper sshpiper/sshpiper --version 0.1.1
+helm install my-sshpiper sshpiper/sshpiper --version 0.3.3
 ```
 
 
