@@ -61,3 +61,33 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Image tag depends on required plugins
+We take full image if more than Kubernetes plugin is required.
+*/}}
+{{- define "sshpiper.imageTag" -}}
+{{- if .Values.sshpiper.failtoban.enabled }}
+{{- $tag := printf "full-%s" .Chart.AppVersion }}
+{{- default $tag .Values.image.tag }}
+{{- else }}
+{{- $tag := printf "%s" .Chart.AppVersion }}
+{{- default $tag .Values.image.tag }}
+{{- end }}
+{{- end }}
+
+{{/*
+Container arguments
+Pass arguments to enable individual plugins or allow complete arguments override.
+*/}}
+{{- define "sshpiper.containerArgs" -}}
+{{- if .Values.sshpiper.argsOverride }}
+{{- toYaml .Values.sshpiper.argsOverride }}
+{{- else }}
+- /sshpiperd/plugins/kubernetes
+{{- if .Values.sshpiper.failtoban.enabled }}
+- --
+- /sshpiperd/plugins/failtoban
+{{- end }}
+{{- end }}
+{{- end }}
