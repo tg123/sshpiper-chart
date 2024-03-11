@@ -12,6 +12,11 @@ sshpiper:
   kubernetes_all_namespaces: false
   drop_hostkeys_message: false
   extraEnvVars: [] # Array of dict. with extra env. variables
+  argsOverride: [] # Array of strings with container arguments to override
+  failtoban:
+    enabled: false
+    max_failures: 5
+    ban_duration: 60m
 
 image:
   repository: farmer1992/sshpiperd
