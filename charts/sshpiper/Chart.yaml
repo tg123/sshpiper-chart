@@ -2,8 +2,8 @@ apiVersion: v2
 name: sshpiper
 description: The missing reverse proxy for ssh scp, username based SSH Reverse Proxy 
 type: application
-version: 0.4.1
-appVersion: "v1.2.8"
+version: 0.4.2
+appVersion: "v1.3.0"
 
 sources:
   - https://github.com/tg123/sshpiper
