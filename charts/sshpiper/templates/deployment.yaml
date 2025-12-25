@@ -33,6 +33,9 @@ spec:
           {{- toYaml .Values.securityContext | nindent 10 }}
         ports:
           - containerPort: 2222
+            {{- if .Values.service.hostPort }}
+            hostPort: {{ .Values.service.hostPort }}
+            {{- end }}
         env:
         {{- if .Values.sshpiper.failtoban.enabled }}
         - name: SSHPIPERD_FAILTOBAN_MAX_FAILURES

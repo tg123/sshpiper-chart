@@ -57,6 +57,7 @@ securityContext:
 service:
   type: ClusterIP
   port: 2222
+  # hostPort: 22
   annotations: {}
 
 resources: {}
