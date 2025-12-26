@@ -11,6 +11,7 @@ sshpiper:
   bannertext: ""
   kubernetes_all_namespaces: false
   drop_hostkeys_message: false
+  allowed_proxy_addresses: "" # connections from these ip ranges are allowed to send a proxy header based on the PROXY protocol
   extraEnvVars: [] # Array of dict. with extra env. variables
   argsOverride: [] # Array of strings with container arguments to override
   failtoban:
