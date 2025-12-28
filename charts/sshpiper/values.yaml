@@ -11,6 +11,7 @@ sshpiper:
   bannertext: ""
   kubernetes_all_namespaces: false
   drop_hostkeys_message: false
+  allowed_proxy_addresses: "" # comma-separated list of IP ranges in CIDR notation (e.g. "10.0.0.0/8,192.168.0.0/16"); only connections from these ranges are allowed to send a PROXY protocol header
   extraEnvVars: [] # Array of dict. with extra env. variables
   argsOverride: [] # Array of strings with container arguments to override
   failtoban:

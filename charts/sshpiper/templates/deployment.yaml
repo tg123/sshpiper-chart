@@ -40,6 +40,10 @@ spec:
         - name: SSHPIPERD_FAILTOBAN_BAN_DURATION
           value: {{ .Values.sshpiper.failtoban.ban_duration | quote }}
         {{- end }}
+        {{- if .Values.sshpiper.allowed_proxy_addresses }}
+        - name: SSHPIPERD_ALLOWED_PROXY_ADDRESSES
+          value: {{ .Values.sshpiper.allowed_proxy_addresses | quote }}
+        {{- end }}
         - name: SSHPIPERD_SERVER_KEY
           value: "/serverkey/ssh_host_key"
         - name: SSHPIPERD_LOG_LEVEL
