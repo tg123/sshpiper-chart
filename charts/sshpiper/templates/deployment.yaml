@@ -78,7 +78,11 @@ spec:
       volumes:
       - name: sshpiper-server-key
         secret:
+          {{- if .Values.sshpiper.existingSecret }}
+          secretName: {{ .Values.sshpiper.existingSecret | quote }}
+          {{- else }}
           secretName: {{ include "sshpiper.fullname" . }}-server-key
+          {{- end }}
           items:
           - key: server_key
             path: ssh_host_key

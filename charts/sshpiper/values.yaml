@@ -6,7 +6,9 @@ replicaCount: 1
 
 sshpiper:
   loglevel: "info"
-  ssh_host_key_base64: "" # This is the private key of the ssh server. It is generated if not set.
+  # This is the private key of the ssh server. It is generated if not set.
+  ssh_host_key_base64: ""
+  existingSecret: ~
   login_grace_time: 30s
   bannertext: ""
   kubernetes_all_namespaces: false
@@ -39,7 +41,8 @@ serviceAccount:
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # If not set and create is true, a name is generated using the fullname
+  # template
   name: ""
 
 podAnnotations: {}
@@ -61,10 +64,11 @@ service:
   annotations: {}
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # We usually recommend not to specify default resources and to leave this as
+  # a conscious choice for the user. This also increases chances charts run on
+  # environments with little resources, such as Minikube. If you do want to
+  # specify resources, uncomment the following lines, adjust them as necessary,
+  # and remove the curly braces after 'resources:'.
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
