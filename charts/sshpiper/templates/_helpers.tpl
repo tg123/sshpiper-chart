@@ -119,7 +119,7 @@ Evaluates the key of the kubernetes secret, depending if an existing secret is u
 {{- if not (include "sshpiper.secret.create" . ) }}
 {{- .Values.sshpiper.ssh_host_key.existing_secret.secret_key}}
 {{- else }}
-{{- print "server-key" }}
+{{- print "server_key" }}
 {{- end }}
 {{- end }}
 
