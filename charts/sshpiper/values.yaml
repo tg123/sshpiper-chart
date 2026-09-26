@@ -6,6 +6,7 @@ replicaCount: 1
 
 sshpiper:
   loglevel: "info"
+  ssh_host_key_base64: "" # deprecated. Switch to Values.sshpiper.ssh_host_key.base64
   ssh_host_key:
     base64: "" # This is the private key of the ssh server. It is generated if not set.
     existing_secret:

@@ -127,8 +127,8 @@ Evaluates the key of the kubernetes secret, depending if an existing secret is u
 Uses the provided ssh host key base64 string or generates a new one if none is provided.
 */}}
 {{- define "sshpiper.sshHostKey" -}}
-{{- if .Values.sshpiper.ssh_host_key.base64 }}
-{{- .Values.sshpiper.ssh_host_key.base64 | quote }}
+{{- if or .Values.sshpiper.ssh_host_key_base64 .Values.sshpiper.ssh_host_key.base64 }}
+{{- coalesce .Values.sshpiper.ssh_host_key_base64 .Values.sshpiper.ssh_host_key.base64 | quote }}
 {{- else }}
 {{- genPrivateKey "ecdsa" | b64enc | quote }}
 {{- end }}
