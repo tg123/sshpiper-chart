@@ -6,7 +6,12 @@ replicaCount: 1
 
 sshpiper:
   loglevel: "info"
-  ssh_host_key_base64: "" # This is the private key of the ssh server. It is generated if not set.
+  ssh_host_key:
+    base64: "" # This is the private key of the ssh server. It is generated if not set.
+    existing_secret:
+      enabled: false
+      secret_name: ""
+      secret_key: ""
   login_grace_time: 30s
   bannertext: ""
   kubernetes_all_namespaces: false
