@@ -24,6 +24,16 @@ sshpiper:
     enabled: false
     max_failures: 5
     ban_duration: 60m
+  metrics:
+    enabled: false
+    container_port: 9000
+    collect_pipe_create_errors: false
+    collect_upstream_auth_failures: false
+    service:
+      port: 9000
+      type: ClusterIP
+      externalTrafficPolicy: ""
+      annotations: {}
 
 image:
   repository: farmer1992/sshpiperd
@@ -64,6 +74,7 @@ securityContext:
 service:
   type: ClusterIP
   port: 2222
+  externalTrafficPolicy: Cluster
   annotations: {}
 
 resources: {}
