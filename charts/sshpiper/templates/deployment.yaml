@@ -68,7 +68,7 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
         args:
-          {{- include "sshpiper.containerArgs" . | indent 10 }}
+          {{- include "sshpiper.containerArgs" . | nindent 10 }}
         volumeMounts:
         - name: sshpiper-server-key
           mountPath: "/serverkey/"
