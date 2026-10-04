@@ -106,7 +106,7 @@ Evaluates the name of the kubernetes secret, depending if an existing secret is 
 */}}
 {{- define "sshpiper.secret.name"}}
 {{- if not (include "sshpiper.secret.create" . ) }}
-{{- .Values.sshpiper.ssh_host_key.existing_secret.secret_name}}
+{{- required "sshpiper.ssh_host_key.existing_secret.secret_name is required when existing_secret.enabled is true" .Values.sshpiper.ssh_host_key.existing_secret.secret_name }}
 {{- else }}
 {{- printf "%s-server-key" (include "sshpiper.fullname" . ) }}
 {{- end }}
@@ -117,7 +117,7 @@ Evaluates the key of the kubernetes secret, depending if an existing secret is u
 */}}
 {{- define "sshpiper.secret.key"}}
 {{- if not (include "sshpiper.secret.create" . ) }}
-{{- .Values.sshpiper.ssh_host_key.existing_secret.secret_key}}
+{{- required "sshpiper.ssh_host_key.existing_secret.secret_key is required when existing_secret.enabled is true" .Values.sshpiper.ssh_host_key.existing_secret.secret_key }}
 {{- else }}
 {{- print "server_key" }}
 {{- end }}
@@ -128,7 +128,7 @@ Uses the provided ssh host key base64 string or generates a new one if none is p
 */}}
 {{- define "sshpiper.sshHostKey" -}}
 {{- if or .Values.sshpiper.ssh_host_key_base64 .Values.sshpiper.ssh_host_key.base64 }}
-{{- coalesce .Values.sshpiper.ssh_host_key_base64 .Values.sshpiper.ssh_host_key.base64 | quote }}
+{{- coalesce .Values.sshpiper.ssh_host_key.base64 .Values.sshpiper.ssh_host_key_base64 | quote }}
 {{- else }}
 {{- genPrivateKey "ecdsa" | b64enc | quote }}
 {{- end }}
