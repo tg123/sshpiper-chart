@@ -83,7 +83,7 @@ Pass arguments to enable individual plugins or allow complete arguments override
 {{- define "sshpiper.containerArgs" -}}
 {{- if .Values.sshpiper.argsOverride }}
 {{- toYaml .Values.sshpiper.argsOverride }}
-{{- else }}
+{{- else -}}
 - /sshpiperd/plugins/kubernetes
 {{- if .Values.sshpiper.failtoban.enabled }}
 - --
