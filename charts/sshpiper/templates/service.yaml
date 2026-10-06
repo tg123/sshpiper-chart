@@ -39,7 +39,7 @@ spec:
   {{- end }}
   ports:
     - port: {{ .Values.sshpiper.metrics.service.port }}
-      targetPort: 9000
+      targetPort: metrics
       protocol: TCP
       name: metrics
   selector:
