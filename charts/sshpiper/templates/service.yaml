@@ -13,6 +13,9 @@ spec:
   {{- if .Values.service.externalTrafficPolicy }}
   externalTrafficPolicy: {{ .Values.service.externalTrafficPolicy }}
   {{- end }}
+  {{- if .Values.service.healthCheckNodePort }}
+  healthCheckNodePort: {{ .Values.service.healthCheckNodePort }}
+  {{- end }}
   ports:
     - port: {{ .Values.service.port }}
       targetPort: 2222
@@ -36,6 +39,9 @@ spec:
   type: {{ .Values.sshpiper.metrics.service.type }}
   {{- if .Values.sshpiper.metrics.service.externalTrafficPolicy }}
   externalTrafficPolicy: {{ .Values.sshpiper.metrics.service.externalTrafficPolicy }}
+  {{- end }}
+  {{- if .Values.sshpiper.metrics.service.healthCheckNodePort }}
+  healthCheckNodePort: {{ .Values.sshpiper.metrics.service.healthCheckNodePort }}
   {{- end }}
   ports:
     - port: {{ .Values.sshpiper.metrics.service.port }}

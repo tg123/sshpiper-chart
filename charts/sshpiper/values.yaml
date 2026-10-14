@@ -33,6 +33,7 @@ sshpiper:
       port: 9000
       type: ClusterIP
       externalTrafficPolicy: ""
+      healthCheckNodePort: ""
       annotations: {}
 
 image:
@@ -75,6 +76,7 @@ service:
   type: ClusterIP
   port: 2222
   externalTrafficPolicy: ""
+  healthCheckNodePort: ""
   annotations: {}
 
 resources: {}
