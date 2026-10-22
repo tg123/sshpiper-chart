@@ -28,7 +28,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ printf "%s-metrics" (include "sshpiper.fullname" . ) }}
+  name: {{ printf "%s-metrics" (include "sshpiper.fullname" . | trunc 55 | trimSuffix "-") }}
   labels:
     {{- include "sshpiper.labels" . | nindent 4 }}
   {{- with .Values.sshpiper.metrics.service.annotations }}
