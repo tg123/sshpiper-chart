@@ -80,6 +80,13 @@ spec:
           readOnly: true
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
+        {{- with .Values.lifecycle }}
+        lifecycle:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      {{- if not (kindIs "invalid" .Values.terminationGracePeriodSeconds) }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- end }}
       volumes:
       - name: sshpiper-server-key
         secret:
