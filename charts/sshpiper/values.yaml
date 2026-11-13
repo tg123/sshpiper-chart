@@ -80,6 +80,15 @@ service:
   annotations: {}
 
 resources: {}
+
+# Container lifecycle hooks for sshpiperd, e.g. a preStop hook that waits for open
+# sessions to end before the pod is stopped. sshpiperd exits on SIGTERM at once,
+# closing every session it relays.
+lifecycle: {}
+
+# How long Kubernetes waits for the pod to stop, preStop hook included, before
+# killing it. Unset keeps the Kubernetes default (30s).
+terminationGracePeriodSeconds:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
